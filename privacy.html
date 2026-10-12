@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Notice de confidentialité du prototype personnel 3615 IA / MinitelGPT : accès Gmail, traitement Mistral AI, stockage local et confirmation des envois.">
+  <title>Confidentialité — 3615 IA / MinitelGPT</title>
+  <style>
+    :root { color-scheme:light; --ink:#183829; --muted:#52645a; --paper:#f5f2e9; --line:#cad1c3; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.65 system-ui,sans-serif; }
+    main { max-width:780px; margin:auto; padding:40px 24px 24px; }
+    header { border-bottom:2px solid var(--ink); padding-bottom:22px; }
+    .label { font:14px/1.4 monospace; letter-spacing:.1em; text-transform:uppercase; }
+    h1 { margin:12px 0; font-size:clamp(28px,5vw,40px); line-height:1.2; }
+    h2 { font-size:23px; margin:30px 0 10px; }
+    p,ul { margin:12px 0; }
+    a { color:#185a3c; text-underline-offset:3px; overflow-wrap:anywhere; }
+    a:focus-visible { outline:3px solid var(--ink); outline-offset:4px; }
+    .note { border-left:4px solid var(--ink); padding:10px 18px; background:#e9edde; }
+    footer { margin-top:34px; border-top:1px solid var(--line); padding-top:18px; font-size:14px; color:var(--muted); }
+    @media (max-width:480px) { main { padding:26px 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="label">3615 IA / MinitelGPT</div>
+    <h1>Confidentialité et utilisation des données</h1>
+    <p>Notice du prototype personnel · Dernière mise à jour : 12 octobre 2026.</p>
+    <nav aria-label="Navigation"><a href="index.html">Retour à la présentation de l'application</a></nav>
+  </header>
+
+  <section aria-labelledby="scope">
+    <h2 id="scope">1. Périmètre</h2>
+    <p>Cette notice décrit l'intégration Gmail du prototype 3615 IA / MinitelGPT, exécuté sur un ordinateur
+    local et utilisé par son propriétaire depuis un Minitel ou une interface d'administration locale.
+    La connexion à Gmail exige une configuration et un consentement Google distincts.
+    Ces pages publiques ne se connectent à aucun compte et ne recueillent aucun message.</p>
+  </section>
+
+  <section aria-labelledby="google">
+    <h2 id="google">2. Données accessibles dans Gmail</h2>
+    <p>Après le consentement de l'utilisateur, l'application utilise deux autorisations Google :</p>
+    <ul>
+      <li><code>gmail.readonly</code> pour consulter et rechercher des messages, puis lire le contenu d'un message sélectionné.</li>
+      <li><code>gmail.send</code> pour envoyer une réponse après une confirmation explicite de l'utilisateur.</li>
+    </ul>
+    <p>Ces autorisations couvrent le compte Gmail autorisé. Les limites de sélection de l'interface
+    ne restreignent pas, à elles seules, la portée de l'autorisation Google.</p>
+    <p>Les données traitées peuvent comprendre les identifiants de messages et de fils, l'expéditeur,
+    les adresses utiles à une réponse, l'objet, les dates, l'état lu/non lu, les en-têtes nécessaires
+    au rattachement d'une réponse au fil et le corps du message sélectionné.
+    Les noms et types des pièces jointes sont affichés ; les fichiers joints ne sont pas analysés.</p>
+    <p>L'adresse du compte autorisé est obtenue auprès de Gmail pour renseigner correctement l'expéditeur
+    des réponses. L'application ne recueille pas le mot de passe du compte Google.</p>
+  </section>
+
+  <section aria-labelledby="purpose">
+    <h2 id="purpose">3. Finalités et contrôle des envois</h2>
+    <p>Ces données servent uniquement aux fonctions demandées : afficher et rechercher des messages,
+    lire ou résumer le message choisi, préparer et réviser une réponse, puis envoyer la version approuvée.</p>
+    <p>La lecture ne modifie pas l'état lu/non lu. Le prototype ne déplace ni ne supprime de messages,
+    ne modifie pas les paramètres de la boîte mail et ne gère pas de brouillons Gmail.
+    La réponse en préparation reste locale. Toute modification invalide sa relecture précédente.</p>
+    <p>Avant un envoi, l'utilisateur doit parcourir la réponse complète, avec le destinataire, l'objet
+    et la signature « Envoyé depuis mon Minitel — 3615 IA », puis confirmer explicitement.
+    Le modèle d'IA ne peut pas approuver ou déclencher un envoi.</p>
+    <p>Le prototype ne vend pas les données Gmail et ne les utilise pas pour la publicité,
+    le profilage commercial, une base de données de messages ou l'entraînement de modèles.
+    L'utilisation des informations reçues des API Google est limitée aux fonctions décrites ici et
+    doit respecter la <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+    notamment ses exigences de Limited Use.</p>
+  </section>
+
+  <section aria-labelledby="mistral">
+    <h2 id="mistral">4. Transmission à Mistral AI</h2>
+    <p>Les requêtes en langage naturel peuvent être transmises à Mistral AI pour déterminer l'opération
+    demandée. Pour un résumé, un brouillon ou une révision, l'application transmet uniquement
+    les données nécessaires du message sélectionné — expéditeur, objet, date et corps — ainsi que
+    les instructions de l'utilisateur et, si nécessaire, la réponse locale en cours de révision.</p>
+    <p>La boîte mail entière, les fichiers joints, les jetons Google, les clés d'API et les mots de passe
+    ne sont pas transmis au modèle. Des adresses ou d'autres informations personnelles peuvent toutefois
+    être présentes dans le message sélectionné ou dans la requête de l'utilisateur.</p>
+    <p>Le contexte du message fourni à l'IA est limité aux premiers 12 000 caractères de son corps.
+    Lorsque cette limite s'applique, elle est signalée dans l'interface. Les contenus dépassant les limites
+    locales de lecture sont refusés avec une indication permettant de les consulter directement dans Gmail.</p>
+    <p class="note"><strong>Configuration nécessaire avant de traiter des messages réels :</strong>
+    le propriétaire doit désactiver l'utilisation des données API pour l'amélioration ou l'entraînement
+    chez Mistral AI, dans les paramètres Privacy de son compte API (option « Anonymous improvement data »),
+    et vérifier les conditions de conservation applicables. Cette page ne peut pas vérifier ces paramètres.</p>
+    <p>Le traitement et la conservation par Mistral AI dépendent des conditions et réglages du compte API.
+    Le prototype ne garantit pas une absence de conservation chez ce fournisseur.
+    L'opt-out d'entraînement et le Zero Data Retention sont des contrôles distincts.</p>
+    <p>Références : <a href="https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training">contrôle de l'utilisation des données API pour l'entraînement</a>
+    et <a href="https://legal.mistral.ai/terms/privacy-policy/">politique de confidentialité de Mistral AI</a>.</p>
+  </section>
+
+  <section aria-labelledby="storage">
+    <h2 id="storage">5. Stockage local et durée de conservation</h2>
+    <p>Les résultats de consultation, les messages chargés et l'unique réponse en préparation sont conservés
+    dans une mémoire de session bornée. Les messages et brouillons ne sont pas enregistrés dans une base
+    de données locale ni placés dans les cookies du navigateur.</p>
+    <p>Le retour au SOMMAIRE, l'annulation de la session mail, la déconnexion de l'administration ou
+    le redémarrage du service efface cet état. Les sessions d'administration devenues inactives sont
+    expirées lors d'un nouvel accès après vingt minutes. Une réponse confirmée comme envoyée est retirée
+    de la mémoire des brouillons ; sa copie demeure dans Gmail selon les choix de l'utilisateur.</p>
+    <p>Les informations OAuth nécessaires à l'accès durable au compte, dont le jeton de renouvellement,
+    sont conservées chiffrées sur l'ordinateur local, séparément du code source. Les jetons d'accès
+    renouvelés sont conservés en mémoire. L'application ne journalise volontairement ni les contenus
+    des messages ni les identifiants d'authentification.</p>
+    <p>Le chiffrement vise à limiter les divulgations accidentelles. Il ne protège pas contre une compromission
+    du service autorisé ou l'extraction complète du support et de sa clé locale.</p>
+  </section>
+
+  <section aria-labelledby="disconnect">
+    <h2 id="disconnect">6. Révocation et suppression</h2>
+    <p>L'utilisateur peut révoquer l'accès de l'application dans les connexions aux applications tierces
+    de son compte Google. Il peut également désactiver l'intégration sur son installation et supprimer
+    les informations d'autorisation locales. Effacer uniquement ces informations ne révoque pas
+    l'autorisation auprès de Google.</p>
+    <p>Une session effacée ne rappelle pas un message déjà envoyé et ne supprime pas les éventuelles données
+    conservées par les fournisseurs. Les demandes concernant une copie conservée par Google ou Mistral AI
+    doivent être traitées avec le fournisseur concerné.</p>
+  </section>
+
+  <section aria-labelledby="website">
+    <h2 id="website">7. Ces pages publiques</h2>
+    <p>Ce site statique n'inclut ni formulaire, ni script, ni outil de suivi ajouté par le projet,
+    ni connexion à Gmail. Son hébergeur GitHub Pages peut traiter les informations techniques de visite,
+    notamment l'adresse IP, selon la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">politique de confidentialité de GitHub</a>.</p>
+  </section>
+
+  <section aria-labelledby="contact">
+    <h2 id="contact">8. Contact et mises à jour</h2>
+    <p>Pour une question sur les pratiques du prototype ou une correction de cette notice,
+    contactez le mainteneur via <a href="https://github.com/perjules/3615-ia-info/issues">les issues de 3615-ia-info</a>.
+    Utilisez uniquement des descriptions générales et n'y publiez aucun message privé,
+    secret de compte, identifiant de connexion ou donnée de famille.</p>
+    <p>La notice doit être mise à jour si les fournisseurs, les fonctions ou les pratiques de traitement changent.</p>
+  </section>
+
+  <footer><p><a href="index.html">3615 IA / MinitelGPT — accueil</a> · Notice du 12 octobre 2026.</p></footer>
+</main>
+</body>
+</html>
