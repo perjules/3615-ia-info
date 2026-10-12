@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="3615 IA / MinitelGPT : un prototype personnel d'assistant conversationnel sur Minitel, avec lecture Gmail et réponses approuvées par son utilisateur.">
+  <title>3615 IA — MinitelGPT</title>
+  <style>
+    :root { color-scheme: light; --ink:#183829; --muted:#52645a; --paper:#f5f2e9; --line:#cad1c3; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.65 system-ui,sans-serif; }
+    main { max-width:780px; margin:auto; padding:40px 24px 24px; }
+    header { border-bottom:2px solid var(--ink); padding-bottom:22px; }
+    .label { font:14px/1.4 monospace; letter-spacing:.1em; text-transform:uppercase; }
+    h1 { margin:8px 0; font:700 clamp(34px,7vw,60px)/1.1 monospace; }
+    h2 { font-size:23px; margin:30px 0 10px; }
+    p,ul,ol { margin:12px 0; }
+    a { color:#185a3c; text-underline-offset:3px; }
+    a:focus-visible { outline:3px solid var(--ink); outline-offset:4px; }
+    .note { border-left:4px solid var(--ink); padding:10px 18px; background:#e9edde; }
+    footer { margin-top:34px; border-top:1px solid var(--line); padding-top:18px; font-size:14px; color:var(--muted); }
+    @media (max-width:480px) { main { padding:26px 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="label">Prototype personnel · Interface texte</div>
+    <h1>3615 IA</h1>
+    <p><strong>MinitelGPT</strong> : un assistant conversationnel sur un Minitel, piloté par un petit ordinateur local.</p>
+    <nav aria-label="Navigation"><a href="privacy.html">Confidentialité et utilisation des données</a></nav>
+  </header>
+
+  <section aria-labelledby="purpose">
+    <h2 id="purpose">Un vieux terminal, des usages actuels</h2>
+    <p>Ce projet personnel adapte une interface de conversation à l'écran et au clavier d'un Minitel.
+    Il permet notamment de consulter des informations, puis, lorsque l'intégration Gmail est configurée,
+    de lire un message et de préparer une réponse avec l'aide de l'IA.</p>
+    <p>Cette installation est destinée à son propriétaire. Ce site présente le prototype ;
+    il ne propose ni inscription, ni connexion à un compte Google, ni accès à une boîte mail.</p>
+  </section>
+
+  <section aria-labelledby="gmail">
+    <h2 id="gmail">Le parcours Gmail</h2>
+    <ol>
+      <li>Afficher jusqu'à dix messages récents ou rechercher des messages.</li>
+      <li>Sélectionner un message pour le lire ; demander un résumé clairement identifié comme généré par l'IA.</li>
+      <li>Préparer une réponse locale, puis la modifier ou l'annuler.</li>
+      <li>Relire le destinataire, l'objet et le texte complet, puis confirmer explicitement l'envoi.</li>
+    </ol>
+    <p class="note">L'envoi exige une action explicite de l'utilisateur.
+    Chaque réponse envoyée comporte la signature « Envoyé depuis mon Minitel — 3615 IA ».</p>
+    <p>L'application utilise l'API Gmail de Google avec les autorisations
+    <code>gmail.readonly</code> et <code>gmail.send</code>.
+    La lecture ne marque pas les messages comme lus. Les brouillons restent dans la mémoire de l'application ;
+    elle ne crée pas de brouillons dans Gmail et ne déplace ni ne supprime de messages.</p>
+  </section>
+
+  <section aria-labelledby="ai">
+    <h2 id="ai">Ce qui est envoyé à l'IA</h2>
+    <p>Les demandes en langage naturel et, pour un résumé ou une réponse, le contenu du message sélectionné
+    et les instructions nécessaires sont transmis à l'API de Mistral AI. Le prototype ne transmet pas
+    la boîte mail entière et n'analyse pas les fichiers joints.</p>
+    <p>Les réponses de l'IA doivent être vérifiées par l'utilisateur.
+    <a href="privacy.html">La notice de confidentialité</a> précise les traitements, les limites et les contrôles nécessaires.</p>
+  </section>
+
+  <section aria-labelledby="project">
+    <h2 id="project">Projet et contact</h2>
+    <p>Le logiciel est disponible dans le <a href="https://github.com/perjules/minitel-gpt">dépôt MinitelGPT</a>.
+    Les informations publiques propres à cette installation sont maintenues dans
+    <a href="https://github.com/perjules/3615-ia-info">3615-ia-info</a>.</p>
+    <p>Pour une question sur cette notice, contactez le mainteneur via
+    <a href="https://github.com/perjules/3615-ia-info/issues">les issues du dépôt d'information</a>.
+    N'y publiez pas de messages privés, d'identifiants ou de données de compte.</p>
+  </section>
+
+  <section aria-labelledby="conditions">
+    <h2 id="conditions">Usage du prototype</h2>
+    <p>Ce prototype personnel est fourni à titre expérimental. Son utilisateur conserve la maîtrise
+    des connexions, des messages sélectionnés et de chaque envoi. Il doit vérifier les résumés et réponses
+    avant de s'appuyer sur leur contenu.</p>
+  </section>
+
+  <footer>
+    <p>3615 IA / MinitelGPT · Informations mises à jour le 12 octobre 2026.</p>
+    <p><a href="privacy.html">Notice de confidentialité</a> · Site statique hébergé par GitHub Pages lorsqu'il est publié.</p>
+  </footer>
+</main>
+</body>
+</html>
