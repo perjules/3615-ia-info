@@ -27,7 +27,7 @@
   <header>
     <div class="label">3615 IA / MinitelGPT</div>
     <h1>Confidentialité et utilisation des données</h1>
-    <p>Notice du prototype personnel · Dernière mise à jour : 12 octobre 2026.</p>
+    <p>Notice du prototype personnel · Dernière mise à jour : 13 octobre 2026.</p>
     <nav aria-label="Navigation"><a href="index.html">Retour à la présentation de l'application</a></nav>
   </header>
 
@@ -44,7 +44,7 @@
     <p>Après le consentement de l'utilisateur, l'application utilise deux autorisations Google :</p>
     <ul>
       <li><code>gmail.readonly</code> pour consulter et rechercher des messages, puis lire le contenu d'un message sélectionné.</li>
-      <li><code>gmail.send</code> pour envoyer une réponse après une confirmation explicite de l'utilisateur.</li>
+      <li><code>gmail.send</code> pour envoyer une réponse ou un nouveau message après une confirmation explicite de l'utilisateur.</li>
     </ul>
     <p>Ces autorisations couvrent le compte Gmail autorisé. Les limites de sélection de l'interface
     ne restreignent pas, à elles seules, la portée de l'autorisation Google.</p>
@@ -52,6 +52,11 @@
     les adresses utiles à une réponse, l'objet, les dates, l'état lu/non lu, les en-têtes nécessaires
     au rattachement d'une réponse au fil et le corps du message sélectionné.
     Les noms et types des pièces jointes sont affichés ; les fichiers joints ne sont pas analysés.</p>
+    <p>Pour choisir le destinataire d'un nouveau message, l'application peut consulter les en-têtes
+    de cinquante messages récents au maximum, envoyés, reçus ou archivés, en excluant les brouillons,
+    le spam et la corbeille. Elle extrait From, Reply-To, To, Cc, Subject et les dates ;
+    les corps, aperçus et pièces jointes de ce catalogue ne sont pas récupérés.
+    L'adresse du compte et les alias personnels explicitement configurés sont exclus des candidats.</p>
     <p>L'adresse du compte autorisé est obtenue auprès de Gmail pour renseigner correctement l'expéditeur
     des réponses. L'application ne recueille pas le mot de passe du compte Google.</p>
   </section>
@@ -59,7 +64,8 @@
   <section aria-labelledby="purpose">
     <h2 id="purpose">3. Finalités et contrôle des envois</h2>
     <p>Ces données servent uniquement aux fonctions demandées : afficher et rechercher des messages,
-    lire ou résumer le message choisi, préparer et réviser une réponse, puis envoyer la version approuvée.</p>
+    lire ou résumer le message choisi, identifier un correspondant récent pour un nouveau message,
+    préparer et réviser le brouillon, puis envoyer la version approuvée.</p>
     <p>La lecture ne modifie pas l'état lu/non lu. Le prototype ne déplace ni ne supprime de messages,
     ne modifie pas les paramètres de la boîte mail et ne gère pas de brouillons Gmail.
     La réponse en préparation reste locale. Toute modification invalide sa relecture précédente.</p>
@@ -76,9 +82,20 @@
   <section aria-labelledby="mistral">
     <h2 id="mistral">4. Transmission à Mistral AI</h2>
     <p>Les requêtes en langage naturel peuvent être transmises à Mistral AI pour déterminer l'opération
-    demandée. Pour un résumé, un brouillon ou une révision, l'application transmet uniquement
+    demandée. Pour un résumé, un brouillon de réponse au message choisi ou sa révision, l'application transmet uniquement
     les données nécessaires du message sélectionné — expéditeur, objet, date et corps — ainsi que
     les instructions de l'utilisateur et, si nécessaire, la réponse locale en cours de révision.</p>
+    <p>Pour sélectionner un destinataire de nouveau message, Mistral AI reçoit la description fournie
+    par l'utilisateur et un catalogue compact de candidats réels : noms décodés, adresses,
+    rôles d'en-tête et sens de l'échange, dernière date connue et jusqu'à deux courts exemples d'objet
+    par adresse. L'ensemble transmis pour cette sélection est limité à 24 000 caractères de catalogue.
+    Si cette limite est dépassée, l'application demande une adresse précise à vérifier dans les
+    messages récents au lieu de transmettre un catalogue incomplet sans le signaler.</p>
+    <p>Après sélection, la rédaction d'un nouveau message utilise les instructions de l'utilisateur
+    et le nom/adresse du destinataire validé ; les objets servant d'indices et le corps d'un ancien
+    message sélectionné ne sont pas fournis à cette rédaction. Une révision peut inclure le brouillon
+    local précédent. Les noms et objets de messages restent des données citées non fiables,
+    pas des instructions donnant au modèle une autorisation d'envoi.</p>
     <p>La boîte mail entière, les fichiers joints, les jetons Google, les clés d'API et les mots de passe
     ne sont pas transmis au modèle. Des adresses ou d'autres informations personnelles peuvent toutefois
     être présentes dans le message sélectionné ou dans la requête de l'utilisateur.</p>
@@ -101,6 +118,11 @@
     <p>Les résultats de consultation, les messages chargés et l'unique réponse en préparation sont conservés
     dans une mémoire de session bornée. Les messages et brouillons ne sont pas enregistrés dans une base
     de données locale ni placés dans les cookies du navigateur.</p>
+    <p>Le catalogue de correspondants est également conservé uniquement dans cette mémoire de session,
+    avec une limite de 64 000 caractères sérialisés. Il peut être réutilisé pendant dix minutes avant
+    une nouvelle récupération à la demande ; il est effacé avec la session. Il n'existe ni base
+    persistante de correspondants ni synchronisation en arrière-plan. L'accès à Google Contacts
+    n'est pas activé et aucune autorisation Contacts n'est demandée par cette étape.</p>
     <p>Le retour au SOMMAIRE, l'annulation de la session mail, la déconnexion de l'administration ou
     le redémarrage du service efface cet état. Les sessions d'administration devenues inactives sont
     expirées lors d'un nouvel accès après vingt minutes. Une réponse confirmée comme envoyée est retirée
@@ -140,7 +162,7 @@
     <p>La notice doit être mise à jour si les fournisseurs, les fonctions ou les pratiques de traitement changent.</p>
   </section>
 
-  <footer><p><a href="index.html">3615 IA / MinitelGPT — accueil</a> · Notice du 12 octobre 2026.</p></footer>
+  <footer><p><a href="index.html">3615 IA / MinitelGPT — accueil</a> · Notice du 13 octobre 2026.</p></footer>
 </main>
 </body>
 </html>

@@ -45,7 +45,7 @@
     <ol>
       <li>Afficher jusqu'à dix messages récents ou rechercher des messages.</li>
       <li>Sélectionner un message pour le lire ; demander un résumé clairement identifié comme généré par l'IA.</li>
-      <li>Préparer une réponse locale, puis la modifier ou l'annuler.</li>
+      <li>Préparer une réponse locale ou un nouveau message à un correspondant récent, puis le modifier ou l'annuler.</li>
       <li>Relire le destinataire, l'objet et le texte complet, puis confirmer explicitement l'envoi.</li>
     </ol>
     <p class="note">L'envoi exige une action explicite de l'utilisateur.
@@ -61,6 +61,10 @@
     <p>Les demandes en langage naturel et, pour un résumé ou une réponse, le contenu du message sélectionné
     et les instructions nécessaires sont transmis à l'API de Mistral AI. Le prototype ne transmet pas
     la boîte mail entière et n'analyse pas les fichiers joints.</p>
+    <p>Pour un nouveau message, Python extrait les correspondants des cinquante messages récents
+    au maximum. Le modèle reçoit un catalogue compact de noms, adresses et indices issus des en-têtes
+    pour choisir le destinataire demandé, sans recevoir les corps de ces messages.
+    Un choix ambigu demande une clarification ; aucune adresse n'est inventée.</p>
     <p>Les réponses de l'IA doivent être vérifiées par l'utilisateur.
     <a href="privacy.html">La notice de confidentialité</a> précise les traitements, les limites et les contrôles nécessaires.</p>
   </section>
@@ -83,7 +87,7 @@
   </section>
 
   <footer>
-    <p>3615 IA / MinitelGPT · Informations mises à jour le 12 octobre 2026.</p>
+    <p>3615 IA / MinitelGPT · Informations mises à jour le 13 octobre 2026.</p>
     <p><a href="privacy.html">Notice de confidentialité</a> · Site statique hébergé par GitHub Pages lorsqu'il est publié.</p>
   </footer>
 </main>
